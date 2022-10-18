@@ -54,11 +54,10 @@ name = []
 address = []
 place_type = []
 rating = []
-timings = []
 website = []
 phone = []
 
-df1 = pd.DataFrame(columns=['Title', 'Type', 'Phone', 'Website', 'Rating', 'Address', 'Operation Hours'])
+df1 = pd.DataFrame(columns=['Title', 'Activity_Type', 'Phone Number', 'Website', 'Rating', 'Address'])
 
 
 def data_add(item):
@@ -93,17 +92,12 @@ def data_add(item):
     else:
         ret_list.append(None)
 
-    if 'operating_hours' in item:
-        ret_list.append(item['operating_hours'])
-    else:
-        ret_list.append(None)
-
     return ret_list
 
 
 for items in final_list:
     for i in items:
-        print(data_add(i))
         df1.loc[len(df1)] = data_add(i)
 
-print(df1)
+df1.insert(0, 'Time', ['9AM', '11AM', '2PM', '4PM', '6PM', '8PM'])
+df1['Duration'] = ['2 hours', '3 hours', '2 hours', '2 hours', '2 hours', '1 hour']
